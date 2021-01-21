@@ -2,7 +2,9 @@
 This is script allows:
  * To shorten the link.
  * Count the nunber of clicks on a shortened link.
+ 
 This project uses the service bit.ly
+
 ## HOW TO USE
 1. Save files on your computer.
 1. Install dependencies: `pip3 install -r requirements.txt `
