@@ -11,7 +11,7 @@ This project interacts with the site bit.ly
 ```console
 pip3 install -r requirements.txt
 ```
-3. Run main.py in the console 
+3. Run main.py in the console: 
 ```console
 python3 main.py
 ```
