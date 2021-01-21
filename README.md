@@ -3,7 +3,7 @@ This is script allows:
  * To shorten the link.
  * Count the nunber of clicks on a shortened link.
  
-This project uses the service bit.ly
+This project interacts with the site bit.ly
 
 ## HOW TO USE
 1. Save files on your computer.
