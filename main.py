@@ -4,58 +4,58 @@ import os
 from dotenv import load_dotenv
 from urllib.parse import urlparse
 
-load_dotenv()
-TOKEN = os.getenv('TOKEN')
+def shorten_link(url,token, link):
+    response = requests.post(url, headers=token, json=link)
+    response.raise_for_status()
+    bitlink = response.json()['id']
+    return bitlink
+
+
+def count_clicks(url, token, link):
+    response = requests.get(url, headers=token, params=link)
+    response.raise_for_status()
+    clicks_count = response.json()
+    return clicks_count['total_clicks']
+
 
 def start():
-	url_bitly = 'https://api-ssl.bitly.com/v4/shorten'
-	Link = input('Введите ссылку\n')
-	fragments_link = urlparse(Link)
-	fragments_link = fragments_link.netloc + fragments_link.path + fragments_link.params + fragments_link.query + fragments_link.fragment
+    load_dotenv()
+    TOKEN = os.getenv('TOKEN')
 
-	url_load = {
-		'long_url': Link
-	}
+    bitly_url = 'https://api-ssl.bitly.com/v4/shorten'
+    link = input('Введите ссылку\n')
+    fragments_link = urlparse(link)
+    fragments_link = fragments_link.netloc + fragments_link.path
 
-	headers = {
-		'Authorization':TOKEN,
-	}
+    load_url = {
+        'long_url': link
+    }
 
-	url_click = f'https://api-ssl.bitly.com/v4/bitlinks/{fragments_link}/clicks/summary'
+    headers = {
+        'Authorization':TOKEN,
+    }
 
-	params = {
-		'unit':'day'
-	}
+    click_url = f'https://api-ssl.bitly.com/v4/bitlinks/{fragments_link}/clicks/summary'
 
-
-	def shorten_link(token, link):
-		response = requests.post(url_bitly, headers=token, json=link)
-		response.raise_for_status()
-		bitlink = response.json()['id']
-		return bitlink
+    params = {
+        'unit':'day'
+    }
 
 
-	def count_clicks(token, link):
-		response = requests.get(url_click, headers=token, params=link)
-		response.raise_for_status()
-		clicks_count = response.json()
-		return clicks_count['total_clicks']
-
-
-	if fragments_link.startswith('bit.ly'):
-		try:
-			print('Количество переходов по ссылке:', count_clicks(headers,params))
-		except requests.exceptions.HTTPError:
-			print('*** ERROR * ERROR *ERROR ***\nВы ввели неверную сокращенную ссылку')
-	elif fragments_link.startswith('bit.ly')==False:
-		try:
-			print('Битлинк', shorten_link(headers, url_load))	
-		except requests.exceptions.HTTPError:
-			print('*** ERROR * ERROR * ERROR ***\nВы ввели неверную ссылку')
+    if fragments_link.startswith('bit.ly'):
+        try:
+            print('Количество переходов по ссылке:', count_clicks(click_url, headers,params))
+        except requests.exceptions.HTTPError:
+            print('*** ERROR * ERROR *ERROR ***\nВы ввели неверную сокращенную ссылку')
+    elif fragments_link.startswith('bit.ly')==False:
+        try:
+            print('Битлинк', shorten_link(bitly_url, headers, load_url))	
+        except requests.exceptions.HTTPError:
+            print('*** ERROR * ERROR * ERROR ***\nВы ввели неверную ссылку')
 
 
 if __name__ == '__main__':
-	start()
+    start()
 
 
 
