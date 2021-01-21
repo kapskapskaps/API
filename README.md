@@ -1,7 +1,7 @@
 # API
 This is script allows:
  * To shorten the link.
- * Count the nunber of clicks on a shortened link.
+ * Count the number of clicks on a shortened link.
  
 This project interacts with the site bit.ly
 
