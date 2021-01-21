@@ -11,6 +11,9 @@ This project interacts with the site bit.ly
 ```console
 pip3 install -r requirements.txt
 ```
-1. Run main.py in the console ```python3 main.py```.
+1. Run main.py in the console 
+```console
+python3 main.py
+```.
   * If you want to shorten the link, just enter your link.
   * If you want to count clicks on links, enter a shortened link.
