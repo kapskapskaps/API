@@ -47,7 +47,7 @@ def start():
             print('Количество переходов по ссылке:', count_clicks(click_url, headers,params))
         except requests.exceptions.HTTPError:
             print('*** ERROR * ERROR *ERROR ***\nВы ввели неверную сокращенную ссылку')
-    elif not fragments_link.startswith('bit.ly'):
+    elif fragments_link.startswith('bit.ly')==False:
         try:
             print('Битлинк', shorten_link(bitly_url, headers, load_url))	
         except requests.exceptions.HTTPError:
