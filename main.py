@@ -4,7 +4,7 @@ import os
 from dotenv import load_dotenv
 from urllib.parse import urlparse
 
-def shorten_link(url,token, link):
+def shorten_link(url, token, link):
     response = requests.post(url, headers=token, json=link)
     response.raise_for_status()
     bitlink = response.json()['id']
@@ -32,13 +32,13 @@ def start():
     }
 
     headers = {
-        'Authorization':bitly_token,
+        'Authorization': bitly_token,
     }
 
     click_url = f'https://api-ssl.bitly.com/v4/bitlinks/{fragments_link}/clicks/summary'
 
     params = {
-        'unit':'day'
+        'unit': 'day'
     }
 
 
