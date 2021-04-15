@@ -4,15 +4,15 @@ import os
 from dotenv import load_dotenv
 from urllib.parse import urlparse
 
-def shorten_link(url, token, link):
-    response = requests.post(url, headers=token, json=link)
+def shorten_link(url, headers, params):
+    response = requests.post(url, headers=headers, json=params)
     response.raise_for_status()
     bitlink = response.json()['id']
     return bitlink
 
 
-def count_clicks(url, token, link):
-    response = requests.get(url, headers=token, params=link)
+def count_clicks(url, headers, link):
+    response = requests.get(url, headers=headers, params=params)
     response.raise_for_status()
     clicks_count = response.json()
     return clicks_count['total_clicks']
