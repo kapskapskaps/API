@@ -1,9 +1,9 @@
 # API
-This is script allows:
+This script allows:
  * To shorten the link.
  * Count the number of clicks on a shortened link.
  
-This project interacts with the site bit.ly
+This project interacts with the site [bit.ly](https://app.bitly.com/)
 
 ## HOW TO USE
 1. Save files on your computer.
