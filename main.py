@@ -20,7 +20,7 @@ def count_clicks(url, token, link):
 
 def start():
     load_dotenv()
-    TOKEN = os.getenv('TOKEN')
+    TOKEN = os.getenv('BITLY_TOKEN')
 
     bitly_url = 'https://api-ssl.bitly.com/v4/shorten'
     link = input('Введите ссылку\n')
