@@ -19,7 +19,7 @@ def count_clicks(url, headers, params):
     return clicks_count['total_clicks']
 
 
-def short_or_not(url, headers, fragments_link): 
+def is_link_short(url, headers, fragments_link): 
     response = requests.get(f'https://api-ssl.bitly.com/v4/bitlinks/{fragments_link}', headers=headers)
     return response.ok
 
@@ -30,8 +30,8 @@ def start():
 
     bitly_url = 'https://api-ssl.bitly.com/v4/shorten'
     link = input('Введите ссылку\n')
-    fragments_link = urlparse(link)
-    fragments_link = f'{fragments_link.netloc}{fragments_link.path}'
+    link_fragments = urlparse(link)
+    short_link_fragments = f'{link_fragments.netloc}{link_fragments.path}'
 
     load_url = {
         'long_url': link
@@ -41,14 +41,14 @@ def start():
         'Authorization': bitly_token,
     }
 
-    click_url = f'https://api-ssl.bitly.com/v4/bitlinks/{fragments_link}/clicks/summary'
+    click_url = f'https://api-ssl.bitly.com/v4/bitlinks/{short_link_fragments}/clicks/summary'
 
     params = {
         'unit': 'day'
     }
 
 
-    if short_or_not(link, headers, fragments_link):
+    if is_link_short(link, headers, short_link_fragments):
         try:
             print('Количество переходов по ссылке:', count_clicks(click_url, headers, params))
         except requests.exceptions.HTTPError:
