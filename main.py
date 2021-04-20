@@ -29,12 +29,12 @@ def start():
     bitly_token = os.getenv('BITLY_TOKEN')
 
     bitly_url = 'https://api-ssl.bitly.com/v4/shorten'
-    payload = input('Введите ссылку\n')
-    link_fragments = urlparse(payload)
+    link = input('Введите ссылку\n')
+    link_fragments = urlparse(link)
     short_link_fragments = f'{link_fragments.netloc}{link_fragments.path}'
 
-    load_url = {
-        'long_url': payload
+    payload = {
+        'long_url': link
     }
 
     headers = {
