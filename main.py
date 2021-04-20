@@ -19,8 +19,8 @@ def count_clicks(url, headers, params):
     return clicks_count['total_clicks']
 
 
-def is_link_short(url, headers, fragments_link): 
-    response = requests.get(f'https://api-ssl.bitly.com/v4/bitlinks/{fragments_link}', headers=headers)
+def is_link_short(url, headers, short_link_fragments): 
+    response = requests.get(f'https://api-ssl.bitly.com/v4/bitlinks/{short_link_fragments}', headers=headers)
     return response.ok
 
 
@@ -29,12 +29,12 @@ def start():
     bitly_token = os.getenv('BITLY_TOKEN')
 
     bitly_url = 'https://api-ssl.bitly.com/v4/shorten'
-    link = input('Введите ссылку\n')
-    link_fragments = urlparse(link)
+    payload = input('Введите ссылку\n')
+    link_fragments = urlparse(payload)
     short_link_fragments = f'{link_fragments.netloc}{link_fragments.path}'
 
     load_url = {
-        'long_url': link
+        'long_url': payload
     }
 
     headers = {
