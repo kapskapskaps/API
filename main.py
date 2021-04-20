@@ -4,6 +4,7 @@ import os
 from dotenv import load_dotenv
 from urllib.parse import urlparse
 
+
 def shorten_link(url, headers, params):
     response = requests.post(url, headers=headers, json=params)
     response.raise_for_status()
@@ -17,9 +18,11 @@ def count_clicks(url, headers, params):
     clicks_count = response.json()
     return clicks_count['total_clicks']
 
+
 def short_or_not(url, headers, fragments_link): 
     response = requests.get(f'https://api-ssl.bitly.com/v4/bitlinks/{fragments_link}', headers=headers)
     return response.ok
+
 
 def start():
     load_dotenv()
@@ -45,7 +48,7 @@ def start():
     }
 
 
-    if short_or_not(link,headers,fragments_link):
+    if short_or_not(link, headers, fragments_link):
         try:
             print('Количество переходов по ссылке:', count_clicks(click_url, headers, params))
         except requests.exceptions.HTTPError:
