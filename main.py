@@ -1,9 +1,15 @@
 import requests
 import os
+import argparse
 
 from dotenv import load_dotenv
 from urllib.parse import urlparse
 
+def get_link():
+    parser = argparse.ArgumentParser(description='Алоха! Данная программа принимает один параметр - ссылку, и возвращает либо сокращенную ссылку, либо кол-во переходов по сокращенной ссылке.')
+    parser.add_argument('link', help='Ваша ссылка')
+    args = parser.parse_args()
+    return args.link
 
 def shorten_link(url, headers, params):
     response = requests.post(url, headers=headers, json=params)
@@ -29,12 +35,12 @@ def start():
     bitly_token = os.getenv('BITLY_TOKEN')
 
     bitly_url = 'https://api-ssl.bitly.com/v4/shorten'
-    link = input('Введите ссылку\n')
-    link_fragments = urlparse(link)
+    #link = input('Введите ссылку\n')
+    link_fragments = urlparse(get_link())
     short_link_fragments = f'{link_fragments.netloc}{link_fragments.path}'
 
     payload = {
-        'long_url': link
+        'long_url': get_link()
     }
 
     headers = {
@@ -48,14 +54,14 @@ def start():
     }
 
 
-    if is_link_short(link, headers, short_link_fragments):
+    if is_link_short(get_link(), headers, short_link_fragments):
         try:
             print('Количество переходов по ссылке:', count_clicks(click_url, headers, params))
         except requests.exceptions.HTTPError:
             print('*** ERROR * ERROR *ERROR ***\nВы ввели неверную сокращенную ссылку')
     else:
         try:
-            print('Битлинк', shorten_link(bitly_url, headers, load_url))	
+            print('Битлинк>>>', shorten_link(bitly_url, headers, payload))	
         except requests.exceptions.HTTPError:
             print('*** ERROR * ERROR * ERROR ***\nВы ввели неверную ссылку')
 
