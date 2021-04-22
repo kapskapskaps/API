@@ -17,5 +17,5 @@ python3 main.py www.yourlink.com
 ```
 
   * If you want to shorten the link, enter your link as the first argument.
-  * If you want to count clicks on links, enter a shortened aslink as the first argument.
+  * If you want to count clicks on links, enter a shortened link as the first argument.
   * If you want to see help, enter a -h or --help as the first argument
