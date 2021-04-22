@@ -13,8 +13,9 @@ pip3 install -r requirements.txt
 ```
 3. Run main.py in the console: 
 ```console
-python3 main.py
+python3 main.py www.yourlink.com
 ```
 
-  * If you want to shorten the link, just enter your link.
-  * If you want to count clicks on links, enter a shortened link.
+  * If you want to shorten the link, enter your link as the first argument.
+  * If you want to count clicks on links, enter a shortened aslink as the first argument.
+  * If you want to see help, enter a -h or --help as the first argument
