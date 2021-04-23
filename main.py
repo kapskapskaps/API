@@ -39,7 +39,6 @@ def start():
     bitly_token = os.getenv('BITLY_TOKEN')
 
     bitly_url = 'https://api-ssl.bitly.com/v4/shorten'
-    #link = input('Введите ссылку\n')
     link_fragments = urlparse(get_link())
     short_link_fragments = f'{link_fragments.netloc}{link_fragments.path}'
 
