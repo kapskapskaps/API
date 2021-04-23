@@ -5,8 +5,12 @@ import argparse
 from dotenv import load_dotenv
 from urllib.parse import urlparse
 
+
 def get_link():
-    parser = argparse.ArgumentParser(description='Алоха! Данная программа принимает один параметр - ссылку, и возвращает либо сокращенную ссылку, либо кол-во переходов по сокращенной ссылке.')
+    parser = argparse.ArgumentParser(description='''
+        Алоха! Данная программа принимает один параметр - ссылку, 
+        и возвращает либо сокращенную ссылку, 
+        либо кол-во переходов по сокращенной ссылке.''')
     parser.add_argument('link', help='Ваша ссылка')
     args = parser.parse_args()
     return args.link
