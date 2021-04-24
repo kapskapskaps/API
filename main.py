@@ -15,6 +15,7 @@ def get_link():
     args = parser.parse_args()
     return args.link
 
+
 def shorten_link(url, headers, params):
     response = requests.post(url, headers=headers, json=params)
     response.raise_for_status()
