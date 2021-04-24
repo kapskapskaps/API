@@ -9,7 +9,6 @@ This project interacts with the site [bit.ly](https://app.bitly.com/)
 Some of the settings are taken from the environment. To define them, create a file `.env` next to the file` main.py` and write there data in this format: `VARIABLE = value`.
 
 The following variables are available:
-- `LOGIN` — your login on the site [bit.ly](https://app.bitly.com/)
 - `BITLY_TOKEN` — your personal token from [bit.ly](https://app.bitly.com/)
 
 ## HOW TO USE
