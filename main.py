@@ -4,13 +4,14 @@ import argparse
 
 from dotenv import load_dotenv
 from urllib.parse import urlparse
+from textwrap import dedent
 
 
 def get_link():
-    parser = argparse.ArgumentParser(description='''
+    parser = argparse.ArgumentParser(description=dedent('''\
         Алоха! Данная программа принимает один параметр - ссылку, 
         и возвращает либо сокращенную ссылку, 
-        либо кол-во переходов по сокращенной ссылке.''')
+        либо кол-во переходов по сокращенной ссылке.'''))
     parser.add_argument('link', help='Ваша ссылка')
     args = parser.parse_args()
     return args.link
